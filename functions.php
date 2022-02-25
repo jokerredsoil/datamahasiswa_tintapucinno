@@ -27,20 +27,20 @@ function tambah($data)
     $jenis_kelamin =
         mysqli_real_escape_string($connect, htmlspecialchars($data["jenis_kelamin"]));
     $hobi =
-        mysqli_real_escape_string($connect, htmlspecialchars($data["hobi"]));
+        mysqli_real_escape_string($connect, htmlspecialchars(implode(",", $data["hobi"])));
     $tempat_lahir
         = mysqli_real_escape_string($connect, htmlspecialchars($data["tempat_lahir"]));
     $tanggal_lahir =
         mysqli_real_escape_string($connect, htmlspecialchars($data["tanggal_lahir"]));
     $provinsi =
         mysqli_real_escape_string($connect, htmlspecialchars($data["provinsi"]));
-       
+
 
     $query = "INSERT INTO mahasiswa (nim, nama, alamat, jenis_kelamin, hobi, tempat_lahir, tanggal_lahir, provinsi ) VALUES ('$nim', '$nama', '$alamat', '$jenis_kelamin', '$hobi', '$tempat_lahir', '$tanggal_lahir', '$provinsi')";
 
-die($query);
-    
-// checkbox kelamin, radiobutton hobi, dropdown provinsi
+    die($query);
+
+    // checkbox kelamin, radiobutton hobi, dropdown provinsi
     mysqli_query($connect, $query);
 
     return mysqli_affected_rows($connect);
